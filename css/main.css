@@ -4,9 +4,9 @@
   src: url("../fonts/OCR/OCR A Std Regular.ttf"); }
 
 :root {
-  --main_body_background_color: #ffffff;
-  --icon_fill_color: #000000;
-  --main_text_color: #000000; }
+  --main_body_background_color: #020a13;
+  --icon_fill_color: #ffffff;
+  --main_text_color: #ffffff; }
 
 * {
   box-sizing: border-box;
@@ -21,8 +21,18 @@ select,
 textarea {
   outline: 0; }
 
-#light {
+#dark {
   visibility: hidden; }
+
+.loader {
+  position: absolute;
+  top: 50%;
+  left: 45%;
+  transform: translate(50%, -50%);
+  width: 10rem;
+  height: 10rem;
+  z-index: 2;
+  animation: pulse 2s infinite; }
 
 /* right bounce */
 @-webkit-keyframes slideIn {
@@ -81,8 +91,8 @@ body {
   background-color: var(--main_body_background_color);
   font-family: "DM Sans", Courier, monospace;
   color: var(--main_text_color);
-  overscroll-behavior: none;
-  transition: background-color 0.5s ease; }
+  scroll-behavior: smooth;
+  transition: background-color 0.5s cubic-bezier(0.42, 0, 0.58, 1) 0s; }
 
 .container {
   padding: 2rem;
@@ -103,18 +113,21 @@ body {
     display: flex;
     position: relative; }
   .header__item {
-    margin-right: 2rem;
     cursor: pointer;
     position: absolute;
     min-width: 8rem;
-    right: 1rem; }
+    text-align: center;
+    right: 0.5rem;
+    top: -0.5rem; }
 
 .banner {
   width: 80%;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-top: 5rem; }
+  height: 100vh;
+  clip-path: circle(20%);
+  margin-bottom: 50rem; }
   .banner__text {
     display: flex;
     flex-direction: column;
@@ -196,10 +209,10 @@ body {
     overflow-x: scroll;
     margin-top: 2rem; }
   .work__card {
-    height: 25rem;
+    height: 20rem;
     min-width: 20rem;
-    border-radius: 8px;
     overscroll-behavior: none;
+    border-radius: 50%;
     background: url(../images/bp.png);
     background-size: cover;
     margin-right: 1.5rem;
@@ -208,6 +221,18 @@ body {
     box-shadow: 0 2px 4px rgba(33, 34, 39, 0.05);
     -webkit-animation: slideIn 0.75s cubic-bezier(0.2, 0.5, 0.1, 1) 0.35s forwards;
     animation: slideIn 0.75s cubic-bezier(0.2, 0.5, 0.1, 1) 0.35s forwards; }
+  .work__animate {
+    height: 50vh;
+    background-color: red;
+    position: relative;
+    overflow: hidden; }
+  .work__skills {
+    height: 100px;
+    position: absolute;
+    top: 50%;
+    left: 0; }
+    .work__skills:first-child {
+      left: -10%; }
 
 .cursor {
   width: 20px;
@@ -256,3 +281,15 @@ body {
   100% {
     transform: scale(1);
     opacity: 0; } }
+
+@keyframes pulse {
+  0% {
+    transform: scale(0.95);
+    border-radius: 50%;
+    box-shadow: 0 0 0 0 rgba(0, 0, 0, 0.7); }
+  70% {
+    transform: scale(1);
+    box-shadow: 0 0 0 10px rgba(0, 0, 0, 0); }
+  100% {
+    transform: scale(0.95);
+    box-shadow: 0 0 0 0 rgba(0, 0, 0, 0); } }

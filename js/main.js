@@ -1,25 +1,5 @@
 const cursor = document.querySelector(".cursor");
 
-// gsap.registerPlugin(ScrollTrigger);
-
-// let sections = gsap.utils.toArray(".work__card");
-
-// gsap.to(sections, {
-//   xPercent: -100 * (sections.length - 1),
-//   ease: "none",
-//   scrollTrigger: {
-//     trigger: ".container",
-//     pin: true,
-//     scrub: 1,
-//     snap: 1 / (sections.length - 1),
-//     // base vertical scrolling on how wide the container is so it feels more natural.
-//     end: "+=3500",
-//   },
-// });
-gsap.to(".icon", { duration: 2, x: 300 });
-
-gsap.to(".icon", { duration: 3, rotation: 360, scale: 0.5 });
-
 document.addEventListener("mousemove", (e) => {
   cursor.setAttribute(
     "style",
@@ -79,3 +59,68 @@ function turnOnTheLights() {
   darkSwitch.style.visibility = "visible";
   lightSwitch.style.visibility = "hidden";
 }
+
+// const skillsPath = {
+//   curviness: 10,
+//   autoRotate: true,
+//   values: [
+//     { x: 100, y: -30 },
+//     { x: 300, y: 90 },
+//     { x: 1100, y: 90 },
+//     { x: window.innerWidth, y: -150 },
+//   ],
+// };
+
+// const tween = new TimelineLite();
+
+// tween.add(
+//   TweenLite.to(".work__skills", 1, {
+//     bezier: skillsPath,
+//     ease: Power1.easeInOut,
+//   })
+// );
+
+// const controller = new ScrollMagic.Controller();
+
+// const skills_container = new ScrollMagic.Scene({
+//   triggerElement: ".work__animate",
+//   duration: 1000,
+//   triggerHook: 0,
+// })
+//   .setTween(tween)
+//   .setPin(".work__animate")
+//   .addTo(controller);
+
+//loader
+gsap.registerPlugin(ScrollTrigger);
+
+let timeline = gsap.timeline({
+  scrollTrigger: {
+    trigger: ".banner",
+    start: "0%",
+    end: "100%",
+    scrub: true,
+    markers: true,
+    pin: true,
+  },
+});
+
+timeline.fromTo(
+  ".banner",
+  { clipPath: "circle(20%)" },
+  { clipPath: "circle(75%)", duration: 1 }
+);
+
+timeline.fromTo(
+  ".loader",
+  { scale: 1 },
+  { scale: 0, opacity: 0, duration: 1 },
+  "-=1"
+);
+timeline.fromTo(".banner__text", { opacity: 0 }, { opacity: 1, duration: 4 });
+timeline.fromTo(
+  ".banner__image",
+  { opacity: 0 },
+  { opacity: 1, duration: 4 },
+  "-=4"
+);
