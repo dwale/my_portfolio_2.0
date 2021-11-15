@@ -100,7 +100,6 @@ let timeline = gsap.timeline({
     start: "0%",
     end: "100%",
     scrub: true,
-    markers: true,
     pin: true,
   },
 });
